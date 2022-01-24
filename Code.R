@@ -1,4 +1,5 @@
 library(tidyverse)
+library(ggplot2)
 music_ds <- readxl::read_excel('Music_ds.xlsx')
 ###Deleting uncomplete/suspiciously long participants###
 
@@ -263,6 +264,6 @@ for(i in 1:15){
 
 gridExtra::grid.arrange(plot[[1]],plot[[2]],plot[[3]],plot[[4]],plot[[5]],plot[[6]],plot[[7]],
                         plot[[8]],plot[[9]],plot[[10]],plot[[11]],plot[[12]],plot[[13]],
-                        plot[[14]],plot[[15]],nrow = 3)
+                        plot[[14]],plot[[15]],nrow = 5)
 
 
