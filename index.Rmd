@@ -146,7 +146,7 @@ Row {.tabset .tabset-fade}
 qqPlot(fit)
 ```
 
-### Homoscedasticity
+### homoscedasticity
 ```{r}
 #homoscedasticity
 plot(fitted(fit),resid(fit))
