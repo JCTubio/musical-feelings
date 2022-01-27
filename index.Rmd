@@ -141,10 +141,16 @@ Row {.tabset .tabset-fade}
 -------------------------------------
 
 ### Resid
-
 ```{r, results='hide'}
 #norality of the residuals
 qqPlot(fit)
+```
+
+### Homoscedasticity
+```{r}
+#homoscedasticity
+plot(fitted(fit),resid(fit))
+lines(c(0.34,0.7),c(0,0), lty = 2,lwd = 2)
 ```
 
 ### Sensitivity
