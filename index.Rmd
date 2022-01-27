@@ -140,26 +140,21 @@ reg_ds%>%
 Row {.tabset .tabset-fade}
 -------------------------------------
 
-### Linear regression
+### Resid
 
-```{r}
+```{r, results='hide'}
 #norality of the residuals
 qqPlot(fit)
 ```
 
-### resid
-```{r}
-hist(resid(fit),breaks = 20)
-```
-
-### homoscedasticity
+### Homoscedasticity
 ```{r}
 #homoscedasticity
 plot(fitted(fit),resid(fit))
 lines(c(0.34,0.7),c(0,0), lty = 2,lwd = 2)
 ```
 
-### sensitivity
+### Sensitivity
 ```{r}
 #sensitivity
 plot(hatvalues(fit))
@@ -176,14 +171,15 @@ summary(fit)
  
 Column {.sidebar data-width=300}
 -------------------------------------
-### Data cleaning
-Before performing any regressions it is important to check that the data does not violate any of the core assumptions of the analysis. Both of the assumptions were clearly met: there were no significant outliers and the errors were almost normally distributed. The homoscedasticity assumptions was less clearly met, but the violation was considered too subtle to mean any problem for the analysis. 
+
+### Testing the hypothesis
+In order to check this prediction, we will perform a simple linear regression in which we try to predict the valence of the song, given the participant's happiness rating. 
 
 ### Repeated measures 
 Because each participant gave a happiness score for each of the 15 scores, our data set contains what we call 'repeated measures'. Participants may have a tendency to rank songs as being happier or as being sadder, making some of the variance in the happiness scores due to the participant's biases. We want to take this variance out of the analysis and to do so we standardize answers within each participant. Now each participant's answer is a z-score, implying that all participants have a mean answer of 0, and the standard deviation of their answers is 1. There is no more variance due to personal biases!
 
-### Testing the hypothesis
-In order to check this prediction, we will perform a simple linear regression in which we try to predict the valence of the song, given the participant's happiness rating. 
+### Checking the assumptions
+Before performing any regressions it is important to check that the data does not violate any of the core assumptions of the analysis. Both of the assumptions were clearly met: there were no significant outliers and the errors were almost normally distributed. The homoscedasticity assumptions was less clearly met, but the violation was considered too subtle to mean any problem for the analysis. 
 
 Hypothesis 2
 =======================================================================
@@ -360,7 +356,7 @@ This study will try to understand the measurement of valence and whether subject
 **To what extent does objective valence judgement predict subjective happiness ratings and to what extent is this relationship moderated by music sophistication?**
 
 
-### Method
+### Data cleaning
 The original data set contained 103 responses, but some had to be dropped. 
 21 participants did not finish the questionnaire and were thus removed from the data set. Furthermore, four participants took less than four minutes to complete the questionnaire. 
 This was considered unreasonably low and so these responses were also removed from the data set. After this cleaning process, the data set contained 78 responses. 
