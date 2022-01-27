@@ -18,7 +18,7 @@ A high demand for music automatically leads to a high demand for research in mus
 
 Lastly, the motivation for the overall study is to create an algorithm for an effective recommendation system. As Panda et al. (2021) say about Spotify’s music recommendation and user taste modelling:, “the addition of emotionally-relevant audio features may improve the system, after all some argue that music’s primary function is to express emotions” (Panda et al. 2021, p.244).
 
-## Hypotheses/ Assumption.
+## Hypotheses / Assumption
 Spotify offers 12 APIs that are known as successful measures of musical characteristics in songs (Panda et al.,2021; was there a second REF?). Valence is one of them, and it describes the level of positivity a song has. As Spotify is a world-wide leading music streaming service with a lot of access to consumer behaviour, its measures of valence are argued to be objective measures capable of predicting consumers’ subjective ratings of a song's positivity and happiness. The first assumption in this study is:
 Spotify’s valence measurement predicts subjective happiness ratings.
 As mentioned before, research has shown that musically sophisticated people rate musical characteristics more similar to objective, music-theory based measures, than people who are less involved in making or listening to music (REF). For example, more sophisticated listeners were better at correct beat perceptions than others (Müllensiefen et al., 2014). This shows that ‘music experts’ are not only better at rating sound characteristics, but that their answers were more align as they based their decision on music-theory. Applying these findings to valence ratings, the following hypothesis is assumed:
