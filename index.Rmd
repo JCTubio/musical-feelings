@@ -116,13 +116,13 @@ var_ds <- stats_ds%>%
   mutate(grp = as.factor(grp))
 ```
 
-Background
+Background {data-orientation=columns}
 =======================================================================
 
-Row
+Column
 -----------------------------------------------------------------------
 
-### Hypothesis 1: Perceived happiness can predict songs valence   
+### Hypothesis 1: Perceived happiness can predict songs valence {data-height=1200}
 ```{r}
 reg_ds%>% 
   ggplot(aes(factor(hppy), valence))+ 
@@ -136,14 +136,6 @@ reg_ds%>%
         panel.grid.major.x = element_blank())
 ```
 
-### Playlist
-```{r}
-knitr::kable(song_names)
-```
-
-Row 
------------------------------------------------------------------------
-
 ### Introduction
 The demand for music has grown to become an important aspect of many peoples’ everyday life (Fuentes et al., 2019). Especially, the mode of music listening has shifted from only actively listening to music from time to time, to the soundtracking of daily activities. People accompany various activities with music, and it becomes an affective-practical resource. Several studies have focused on Music Emotion Recognition (MER) (Aljanaki et al. 2014). It focuses mostly on two dimensions: “valence (positive vs. negative) and arousal (quiet vs. energetic). However, the perfect MER model has not yet been found, as subjective and objective views on music often differ greatly (REF). 
 
@@ -152,6 +144,13 @@ This study will try to understand the measurement of valence and whether subject
 
 **To what extent does objective valence judgement predict subjective happiness ratings and to what extent is this relationship moderated by music sophistication?**
 
+Column
+-----------------------------------------------------------------------
+
+### Playlist {data-height=900}
+```{r}
+knitr::kable(song_names)
+```
 
 ### Data cleaning
 The original data set contained 103 responses, but some had to be dropped. 
