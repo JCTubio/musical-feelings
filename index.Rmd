@@ -116,6 +116,48 @@ var_ds <- stats_ds%>%
   mutate(grp = as.factor(grp))
 ```
 
+Background
+=======================================================================
+
+Row
+-----------------------------------------------------------------------
+
+### Hypothesis 1: Perceived happiness can predict songs valence   
+```{r}
+reg_ds%>% 
+  ggplot(aes(factor(hppy), valence))+ 
+  geom_boxplot(fill = '#1DB954')+
+  xlab('Happiness rating')+
+  ylab('Song valence')+
+  labs(title = 'Songs rated as happier tend to have a higher valence',
+       subtitle = 'Distribution of valences for songs rated at different happiness level')+
+  theme_minimal()+
+  theme(plot.title = element_text(face = 2),
+        panel.grid.major.x = element_blank())
+```
+
+### Playlist
+```{r}
+knitr::kable(song_names)
+```
+
+Row 
+-----------------------------------------------------------------------
+
+### Introduction
+The demand for music has grown to become an important aspect of many peoples’ everyday life (Fuentes et al., 2019). Especially, the mode of music listening has shifted from only actively listening to music from time to time, to the soundtracking of daily activities. People accompany various activities with music, and it becomes an affective-practical resource. Several studies have focused on Music Emotion Recognition (MER) (Aljanaki et al. 2014). It focuses mostly on two dimensions: “valence (positive vs. negative) and arousal (quiet vs. energetic). However, the perfect MER model has not yet been found, as subjective and objective views on music often differ greatly (REF). 
+
+### Research Question
+This study will try to understand the measurement of valence and whether subjective and objective valence differs as much in our sample. Additionally, many studies have shown that musical sophistication has an effect on the relationship between objective and subjective musical perception (REF). We will examine whether the level of expertise in music will impact musical perception in the context of valence, leading to the following research question:
+
+**To what extent does objective valence judgement predict subjective happiness ratings and to what extent is this relationship moderated by music sophistication?**
+
+
+### Data cleaning
+The original data set contained 103 responses, but some had to be dropped. 
+21 participants did not finish the questionnaire and were thus removed from the data set. Furthermore, four participants took less than four minutes to complete the questionnaire. 
+This was considered unreasonably low and so these responses were also removed from the data set. After this cleaning process, the data set contained 78 responses.
+
 Hypothesis 1
 =======================================================================
 
@@ -220,24 +262,19 @@ ggplot(plot_ds,aes(x=factor(hppy),y=valence,fill = grp))+
   labs(title = 'Sophistication has no moderation effect', subtitle = 'Valence distributions at each level of happiness by sophistication levels')
 ```
  
-Row {.tabset}
+Column {.sidebar data-width=300}
 -------------------------------------
+
 ### Setup
 To check this prediction we perform a moderation analysis. We keep the standardized version of the happiness scores because of the same reasons exposed in the simple linear regression. 
 
 ### Checking extra assumptions
 Performing a moderation analysis implies entering the domains of the multiple linear regression (i.e. now there os more than one predictor). This means that the multicollinearity between predictors must be checked. To do so we look at the VIF values of the two predictors used, and there seems to be no multicollinearity at all.
 
-```{r}
-library(car)
-vif(fitMod)
-
-```
-
 ### Fitting the model
 The model points at the interaction term being not significant and R2 = 0.1043. This points at our prediction not being met: the interaction is not significant and including this interaction term into the regression 
 
-```{r}
+```{r, results='hide'}
     #Center data (this is not the same as the standardization process we did before)
 X <- mod_ds$hppy
 Z <- mod_ds$sophi
@@ -251,6 +288,7 @@ library(gvlma)
 fitMod <- lm(Y ~ X + sophistication + X*sophistication) 
 summary(fitMod)
 ```
+
 
 ### Analysis and conclusion
 Although the fit statistics already point at our prediction being not supported by the data, we can explore it visually. To do so we plot the valence distribution of songs at each level of happiness, for three different sophistication levels. If there was a moderation effect we would expect the direction of the relationship to change significantly in at least one of the three sophistication levels. Nevertheless, in all three plots, the relationship between valence and happiness seems identical.
@@ -328,7 +366,7 @@ var_ds%>%
 
 ```
 
-Row {.tabset}
+Column {.sidebar data-width=300}
 -------------------------------------
 
 ### Levene's test
@@ -340,31 +378,105 @@ As we can see from the corrected Levene's tests p-value, none of the songs group
 ### Considerations
 It could be the case that our sample has a low sophistication in general. This would mean that our 'high' group still has a low sophistication in absolute terms, and thus we are not able to infer anything about highly sophisticated people and variance in happiness scores. To check this we plot the music sophistication distribution in our sample. We can see here nevertheless, that sophistication levels are sufficiently spread and we can consider our sample representative enough.
 
-Background {data-orientation=columns}
+Conclusion
 =======================================================================
 
-Column
------------------------------------------------------------------------
+Row
+-------------------------------------
+### Valence is a valid proxy for happiness, however not perfect
 
-### Introduction
-The demand for music has grown to become an important aspect of many peoples’ everyday life (Fuentes et al., 2019). Especially, the mode of music listening has shifted from only actively listening to music from time to time, to the soundtracking of daily activities. People accompany various activities with music, and it becomes an affective-practical resource. Several studies have focused on Music Emotion Recognition (MER) (Aljanaki et al. 2014). It focuses mostly on two dimensions: “valence (positive vs. negative) and arousal (quiet vs. energetic). However, the perfect MER model has not yet been found, as subjective and objective views on music often differ greatly (REF). 
+In the existing literature, Spotify’s valence measure has often been used as a way to operationalize the happiness of a track or playlist. Given that our study found valence to significantly predict subjective happiness ratings, this practice seems to be valid. It should be noted however, that not all of the happiness’ variance was explained by valence (R²=......). Future research may therefore combine several of Spotify’s other features such as valence but also danceability or mode, assign weights to them and use this compound of features as a more accurate representation of happiness in music.
 
-### Research Question
-This study will try to understand the measurement of valence and whether subjective and objective valence differs as much in our sample. Additionally, many studies have shown that musical sophistication has an effect on the relationship between objective and subjective musical perception (REF). We will examine whether the level of expertise in music will impact musical perception in the context of valence, leading to the following research question:
+### Distribution of valences for songs rated at different happiness level {data-width=260}
 
-**To what extent does objective valence judgement predict subjective happiness ratings and to what extent is this relationship moderated by music sophistication?**
-
-
-### Data cleaning
-The original data set contained 103 responses, but some had to be dropped. 
-21 participants did not finish the questionnaire and were thus removed from the data set. Furthermore, four participants took less than four minutes to complete the questionnaire. 
-This was considered unreasonably low and so these responses were also removed from the data set. After this cleaning process, the data set contained 78 responses. 
-
-Column {.tabset .tabset-fade}
------------------------------------------------------------------------
-
-### Playlist
 ```{r}
-knitr::kable(song_names)
+reg_ds%>% 
+  ggplot(aes(factor(hppy), valence))+ 
+  geom_boxplot(fill = '#1DB954')+
+  xlab('Happiness rating')+
+  ylab('Song valence')+
+  labs(title = 'Songs rated as happier tend to have a higher valence',
+       subtitle = 'Distribution of valences for songs rated at different happiness level')+
+  theme_minimal()+
+  theme(plot.title = element_text(face = 2),
+        panel.grid.major.x = element_blank())
 ```
 
+Row
+-------------------------------------
+### The musical sophistication measured by the Gold-MSI does not seem to include the ability to judge happiness in music.
+
+According to its authors, the Goldsmith-MSI is an instrument measuring “self-reported musical skills and behaviours” (Müllensiefen et al., 2014). In our study, a participant’s musical sophistication was not found to significantly strengthen the relationship between a song’s valence and the subjective happiness perceived by people listening to it. Thus, judging happiness in music is either not included in the skills and behaviours captured by the Gold-MSI or self-reported musical sophistication does not match actual performance, in our case judging the happiness of songs. In the above-mentioned original study presenting the Goldsmith-MSI, the authors validate it by demonstrating a positive association between musical sophistication and performances on melodic memory and beat perception tasks respectively. One common feature of those two tasks is that the measured aspect, whether melody or beat, is objective and precisely definable. This is not the case with happiness, which is a quality of a track that is more intangible and lies a lot more in the eyes (or rather ears) of the beholder. Thus, the Goldsmith-MSI seems to be more adequate when measuring people’s abilities to judge objective aspects of music, rather than intangibles such as happiness.
+
+### Valence distributions at each level of happiness by sophistication levels {data-width=260}
+
+```{r}
+
+
+low <- sort(sphst$sophi)[1:(length(sphst$sophi)*(1/3))]
+mid <- sort(sphst$sophi)[(length(sphst$sophi)*(1/3)+1):(length(sphst$sophi)*(2/3))]
+high <- sort(sphst$sophi)[(length(sphst$sophi)*(2/3)+1):(length(sphst$sophi))]
+
+#make data set 
+plot_ds <- stats_ds%>%
+  pivot_longer(song1:song15)%>%
+  select(ResponseId,song = name, hppy = value)%>%
+  inner_join(vlncs)%>%
+  inner_join(sphst)%>%
+  mutate(grp = ifelse(sophi %in% low, 1,2))%>%
+  mutate(grp = ifelse(sophi %in% high,3,grp))%>%
+  mutate(grp = as.factor(grp))
+
+levels(plot_ds$grp) <- c('Low','Mid','High')
+
+ggplot(plot_ds,aes(x=factor(hppy),y=valence,fill = grp))+
+  geom_boxplot()+
+  facet_grid(.~grp)+
+  xlab(label = 'Happiness scores')+
+  ylab(label = ifelse(i == 1,'Valence',''))+
+  theme_minimal()+
+  theme(plot.title = element_text(face="bold"))+
+  theme(legend.position =  'none',
+        panel.grid.major.x = element_blank())+
+  scale_fill_manual(values = c('Low' = "#c5f6d6",'Mid' = "#83eca7",'High' = "#1db954"))+
+  labs(title = 'Sophistication has no moderation effect', subtitle = 'Valence distributions at each level of happiness by sophistication levels')
+```
+
+Row
+-------------------------------------
+### People with a higher musical sophistication do not ‘agree more’ in their judgement of music happiness.
+
+In Hypothesis 3 we tested to what extent the more sophisticated participants showed less spreaded answers (i.e. if the variance in their response was smaller). If this was the case, it pointed at more sophisticated participants ‘agreeing more’ in their answers. So even if they did not agree with the Spotify valence more than less sophisticated participants, they did agree among themselves. This prediction stems from the fact that more sophisticated participants indeed ‘agree more’ than less sophisticated ones when, for instance, judging the pitch of sound. Nevertheless, we found no sign of greater agreement in any of the 15 songs. This could have been explained by our sample lacking a good representation of more musically sophisticated people. It could have been the case that, out of chance or due to sampling bias, our participants were all rather unsophisticated in absolute terms. Nonetheless, after comparing our distribution to that from the original paper that introduced the Goldsmith-MSI questionnaire, this explanation is ruled out. In sum, our data clearly points at sophisticated people not showing a higher agreement in their happiness judgment. 
+
+### Happiness perception by musical sophistication {data-width=260}
+
+```{r}
+#calculate levene's test and make plots
+
+songs <- unique(var_ds$song)
+plot <- list()
+
+for(i in 1:15){
+  song <- var_ds%>%
+    subset(song == songs[i])
+  lev_p <- p.adjust(car::leveneTest(song$hppy,song$grp)$`Pr(>F)`[1],'bonferroni',15) #we correct for multiple testing
+  plot[[i]] <- ggplot(song,aes(grp,hppy,fill = grp))+
+    geom_boxplot()+  
+    ggtitle(paste(c('   Song ',i),collapse = ''))+
+    scale_x_discrete(labels = c('low','mid','high'))+
+    xlab(ifelse(i %in% 11:15,'sophistication',''))+
+    ylab(ifelse(i %in% c(1,6,11),'happiness',''))+
+    theme(plot.title = element_text(face="bold"))+
+    scale_fill_manual(values = c('1' = "#c5f6d6",
+                                 '2' = "#83eca7",
+                                 '3' = "#1db954"))+
+    theme_minimal()+
+    theme(legend.position = 'none')+
+    scale_y_continuous(breaks = seq(1,7,by = 1))+
+    ylim(1,7)
+  }
+
+gridExtra::grid.arrange(plot[[1]],plot[[2]],plot[[3]],plot[[4]],plot[[5]],plot[[6]],plot[[7]],
+                        plot[[8]],plot[[9]],plot[[10]],plot[[11]],plot[[12]],plot[[13]],
+                        plot[[14]],plot[[15]],nrow = 3)
+```
