@@ -147,15 +147,21 @@ This study will try to understand the measurement of valence and whether subject
 Column
 -----------------------------------------------------------------------
 
-### Playlist {data-height=900}
+### Playlist {data-height=790}
 ```{r}
 knitr::kable(song_names)
 ```
 
-### Data cleaning
+### Data cleaning {data-height=270}
 The original data set contained 103 responses, but some had to be dropped. 
 21 participants did not finish the questionnaire and were thus removed from the data set. Furthermore, four participants took less than four minutes to complete the questionnaire. 
 This was considered unreasonably low and so these responses were also removed from the data set. After this cleaning process, the data set contained 78 responses.
+
+### Method {data-height=290}
+In accordance with the hypotheses, the measured variables were participant’s happiness ratings per song (DV), Spotify’s valence ratings per song (IV) and the participants’ respective levels of musical sophistication (IV / Moderator).
+A convenience sample was gathered by distributing the questionnaire to friends, family, colleagues and other students.
+The valence ratings were sourced from the web-version of the Spotify API. The remaining, participant-specific data was gathered through Qualtrics using a mixed design. After signing the informed consent, participants were first asked to judge the happiness of 15 songs which were selected from the Dutch Charts playlist on Spotify. The songs were selected in a manner so that the spectrum from very low to very high valence (Spotify API) was completely covered. Following this, the participants were asked to fill out the Goldsmith Musical Sophistication Index (Gold-MSI) questionnaire, specifically the 18 items measuring the general musical sophistication subscale. For each item, participants are asked to indicate their agreement to the given statement on a scale from “Completely Disagree” to “Completely Agree”. Example items include “I can sing and play music from my memory” and “I would not consider myself a musician” (reverse-coded). 
+
 
 Hypothesis 1
 =======================================================================
@@ -332,37 +338,32 @@ gridExtra::grid.arrange(plot[[1]],plot[[2]],plot[[3]],plot[[4]],plot[[5]],plot[[
 
 ### Sophistication spread
 ```{r}
-
+frm_ppr <- data.frame(dens = msm::rtnorm(5000,81.50,20.6,18,126),grp = rep(2,500))
 
 var_ds%>%
   select(ResponseId,sophi,grp)%>%
+  mutate(grp = 1)%>%
   unique()%>%
-  ggplot(aes(x = sophi,fill = grp))+
-  geom_histogram(color = 'black',binwidth = 3,center =1.5)+
-  scale_fill_manual(values = c('1' = "#c5f6d6",
-                                 '2' = "#83eca7",
-                                 '3' = "#1db954"),
-                      labels = c('Low','Mid','High'))+
-  labs(title = 'Sample shows spread enough sophistication scores',
-       subtitle = 'Distribution of sophistication scores',
-       fill = 'Group')+
+  ggplot(aes(x = sophi,fill = factor(grp)))+
+  geom_histogram(aes(y = ..density..),color = 'black',binwidth = 7,center =3.5)+
+  geom_density(frm_ppr,mapping = aes(x = dens,fill = factor(grp)),alpha = 0.4,color = 'black')+
+  scale_fill_manual(values = c('1' = "#90ee90",
+                               '2' = '#ededed'),
+                    labels = c('Our data','Previous data'))+
+  labs(title = 'Sample sophistication scores spreaded enough',
+       subtitle = 'Distribution of sophistication scores, our sample vs original research',
+       fill = 'Data set')+
   xlab('Sophistication')+
-  ylab('Frequency')+
+  ylab('Density')+
   theme_minimal()+
-  scale_x_continuous(breaks = seq(40,110,10))+
+  scale_x_continuous(limits = c(10,140),breaks = seq(20,130,10))+
   theme(panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
-        plot.title = element_text(face = 2),
         axis.title.x = element_text(margin = margin(t=5)),
-        axis.title.y = element_text(margin = margin(r=10)))
-
-        
-
-  
-
-
-
-
+        axis.title.y = element_text(margin = margin(r=10)),
+        text = element_text(size = 14),
+        plot.title = element_text(face = 2, hjust = 0.3),
+        plot.subtitle = element_text(hjust = 0.3))
 ```
 
 Column {.sidebar data-width=300}
