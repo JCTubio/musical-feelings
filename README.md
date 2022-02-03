@@ -8,6 +8,7 @@ Link to dashboard: https://jctubio.github.io/musical-feelings/
 - Julia Zeuzem (Universiteit van Amsterdam)
 - Néstor Narbona Chulvi (Universiteit van Amsterdam)
 - Lieve Jilesen (Vrije Universiteit Amsterdam)
+- Juan Cruz Tubio (Vrije Universiteit Amsterdam)
 
 ## Motivation & Research question
 The demand for music has grown to become an important aspect of many peoples’ everyday life (Fuentes et al., 2019). Especially, the mode of music listening has shifted from only actively listening to music from time to time, to the soundtracking of daily activities. People accompany various activities with music, and it becomes an affective-practical resource. Songs have shown to change and strengthen peoples’ emotions, help patients’ with their anxiety and improve workers’ concentration (Sloboda et al., 2001; Mok & Wong, 2003; Lesiuk, 2005).
