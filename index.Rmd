@@ -142,7 +142,7 @@ A high demand for music automatically leads to a high demand for research in mus
 
 
 ### Research Question
-This study will try to understand the measurement of valence and whether subjective and objective valence differs as much in our sample. Additionally, many studies have shown that musical sophistication has an effect on the relationship between objective and subjective musical perception (REF). We will examine whether the level of expertise in music will impact musical perception in the context of valence, leading to the following research question:
+This study will try to understand the measurement of valence and whether subjective and objective valence differs as much in our sample. Additionally, many studies have shown that musical sophistication has an effect on the relationship between objective and subjective musical perception (Castro & Lima, 2014). We will examine whether the level of expertise in music will impact musical perception in the context of valence, leading to the following research question:
 
 **To what extent does objective valence judgement predict subjective happiness ratings and to what extent is this relationship moderated by music sophistication?**
 
