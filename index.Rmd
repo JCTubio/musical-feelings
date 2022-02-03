@@ -396,7 +396,7 @@ Row
 -------------------------------------
 ### Valence is a valid proxy for happiness, however not perfect
 
-In the existing literature, Spotify’s valence measure has often been used as a way to operationalize the happiness of a track or playlist. Given that our study found valence to significantly predict subjective happiness ratings, this practice seems to be valid. It should be noted however, that not all of the happiness’ variance was explained by valence (R²=......). Future research may therefore combine several of Spotify’s other features such as valence but also danceability or mode, assign weights to them and use this compound of features as a more accurate representation of happiness in music.
+In the existing literature, Spotify’s valence measure has often been used as a way to operationalize the happiness of a track or playlist. Given that our study found valence to significantly predict subjective happiness ratings, this practice seems to be valid. It should be noted however, that not all of the happiness’ variance was explained by valence (R²=0.12). Future research may therefore combine several of Spotify’s other features such as valence but also danceability or mode, assign weights to them and use this compound of features as a more accurate representation of happiness in music.
 
 ### Distribution of valences for songs rated at different happiness level {data-width=260}
 
