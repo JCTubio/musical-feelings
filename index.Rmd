@@ -137,7 +137,9 @@ reg_ds%>%
 ```
 
 ### Introduction
-The demand for music has grown to become an important aspect of many peoples’ everyday life (Fuentes et al., 2019). Especially, the mode of music listening has shifted from only actively listening to music from time to time, to the soundtracking of daily activities. People accompany various activities with music, and it becomes an affective-practical resource. Several studies have focused on Music Emotion Recognition (MER) (Aljanaki et al. 2014). It focuses mostly on two dimensions: “valence (positive vs. negative) and arousal (quiet vs. energetic). However, the perfect MER model has not yet been found, as subjective and objective views on music often differ greatly (REF). 
+The demand for music has grown to become an important aspect of many peoples’ everyday life (Fuentes et al., 2019). Especially, the mode of music listening has shifted from only actively listening to music from time to time, to the soundtracking of daily activities. People accompany various activities with music, and it becomes an affective-practical resource. Songs have shown to change and strengthen peoples’ emotions, help patients’ with their anxiety and improve workers’ concentration (Sloboda et al., 2001; Mok & Wong, 2003; Lesiuk, 2005).
+A high demand for music automatically leads to a high demand for research in music listening behaviour. Several studies have focused on Music Emotion Recognition (MER) (Aljanaki et al. 2014). It focuses mostly on two dimensions: “valence (positive vs. negative) and arousal (quiet vs. energetic). However, the perfect MER model has not yet been found. 
+
 
 ### Research Question
 This study will try to understand the measurement of valence and whether subjective and objective valence differs as much in our sample. Additionally, many studies have shown that musical sophistication has an effect on the relationship between objective and subjective musical perception (REF). We will examine whether the level of expertise in music will impact musical perception in the context of valence, leading to the following research question:
@@ -218,6 +220,9 @@ summary(fit)
 Column {.sidebar data-width=300}
 -------------------------------------
 
+### Rationale
+Spotify offers 12 APIs that are known as successful measures of musical characteristics in songs (Panda et al.,2021). Valence is one of them, and it describes the level of positivity a song has. As Spotify is a world-wide leading music streaming service with a lot of access to consumer behaviour, its measures of valence are argued to be objective measures capable of predicting consumers’ subjective ratings of a song's positivity and happiness.
+
 ### Testing the hypothesis
 In order to check this prediction, we will perform a simple linear regression in which we try to predict the valence of the song, given the participant's happiness rating. 
 
@@ -269,6 +274,9 @@ ggplot(plot_ds,aes(x=factor(hppy),y=valence,fill = grp))+
  
 Column {.sidebar data-width=300}
 -------------------------------------
+
+### Rationale
+As mentioned before, research has shown that musically sophisticated people rate musical characteristics more similar to objective, music-theory based measures, than people who are less involved in making or listening to music (Castro & Lima, 2014).
 
 ### Setup
 To check this prediction we perform a moderation analysis. We keep the standardized version of the happiness scores because of the same reasons exposed in the simple linear regression. 
@@ -368,6 +376,9 @@ var_ds%>%
 
 Column {.sidebar data-width=300}
 -------------------------------------
+
+### Rationale
+The better understanding of music of more sophisticated people indicates that ‘music experts’ are not only better at rating sound characteristics, but that their answers were more align as they based their decision on music-theory (Castro & Lima, 2014).
 
 ### Levene's test
 To check this prediction we use the Levene's test. In doing so we compare the happiness scores variance of the 'low','mid' and 'high' sophistication group for each of the 15 songs. If the test shows a significant p-value, at least one of the groups has a different variance than the others. To see exactly what group has this different variance and visualize the data, we plot the happiness score distribution for each sophistication group using a boxplot. If our prediction was supported by the data, then the dark green box (i.e. variance of the highly sophisticated participants) would be systematically smaller than the lighter green boxes (i.e. variance of the 'mid' and 'low' participants). As a final note, Levene's test's p-values are corrected for multiplied testing using Bonferroni's correction.
